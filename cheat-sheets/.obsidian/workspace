@@ -1,0 +1,141 @@
+{
+  "main": {
+    "id": "c489653cb6f0892f",
+    "type": "split",
+    "children": [
+      {
+        "id": "186c64c4359167c7",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "macos/Install Homebrew.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "185d0dca083977a3",
+    "type": "split",
+    "children": [
+      {
+        "id": "d2c17b40f62fb163",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fc0b883dc31814a8",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "47ed345e7991d054",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "46a32f38ef1d3871",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "53432a77a6d9905b",
+    "type": "split",
+    "children": [
+      {
+        "id": "af36db1b9a67798e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ea70ccebcf6f17bd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "macos/Install Homebrew.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "66afc6762e15733e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "macos/Install Homebrew.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "cc65080ca4261d00",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "9fd7516901e0e8c3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "macos/Install Homebrew.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "186c64c4359167c7",
+  "lastOpenFiles": [
+    "kubernetes/Install a K3s HA Cluster with etcd.md",
+    "kubernetes/Use a self-signed SSL Certificate.md",
+    "kubernetes/Use HAProxy in OPNsense as Loadbalancer for a Kubernetes HA Cluster.md",
+    "kubernetes/template-deployment.md",
+    "macos/Install Homebrew.md",
+    "Unbenannt 1.md",
+    "Unbenannt.md"
+  ]
+}
