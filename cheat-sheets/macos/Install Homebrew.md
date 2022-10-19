@@ -22,4 +22,9 @@ brew install <Package>
 brew install --cask <App>
 ```
 
+### 4. Upgrade Apps
+```bash
+brew upgrade --casks
+```
+
 [List of available Packages](https://formulae.brew.sh/])

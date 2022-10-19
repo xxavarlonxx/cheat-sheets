@@ -18,50 +18,48 @@
     cat ca.key | base64 -w 0
     ```
 3. Create a secret object `nginx1-ca-secret.yml` and put in the key and crt content
-4. Create a cluster issuer object `nginx1-clusterissuer.yml`
-5. Create a new certificate `nginx1-cert.yml` for your projects
-6. Add a `tls` reference in your ingress `nginx1-ingress.yml`
-7. Apply all changes
-
-## Architecture Diagram
-
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nginx1-ca-secret
+  namespace: cert-manager
+type: Opaque
+data:
+  tls.crt: #Base64 String of the CRT - cat ca.crt | base64
+  tls.key: #Base64 String of the Private Key - cat ca.key | base64
 ```
-                Cert-Manager Objects                        Nginx1 Objects
-
-               ┌───────────────────────┐                    ┌─────────────────────────────────┐
-Created CA     │ kind: Secret          │                    │                                 │
-private key ──►│ name: nginx1-ca-secret│◄─────────┐         │ kind: Ingress                   │
-and cert       │ tls.key: **priv key** │          │         │ name: nginx1-ingress            │
-               │ tls.crt: **cert**     │          │         │ tls:                            │
-               └───────────────────────┘          │         │   - hosts:                      │
-                                                  │         │     - nginx1.clcreative.home    │
-               ┌──────────────────────────────┐   │    ┌────┼───secretName: nginx1-tls-secret │
-               │                              │   │    │    │                                 │
-               │ kind: ClusterIssuer          │   │    │    └─────────────────────────────────┘
-           ┌───┤►name: nginx1-clusterissuer   │   │    │
-           │   │ secretName: nginx1-ca-secret─┼───┘    │
-           │   │                              │        │
-           │   └──────────────────────────────┘        │
-           │                                           │
-           │   ┌───────────────────────────────┐       │
-           │   │                               │       │
-           │   │ kind: Certificate             │       │
-           │   │ name: nginx1-cert             │       │
-           └───┼─issuerRef:                    │       │
-               │   name: nginx1-clusterissuer  │       │
-               │   kind: ClusterIssuer         │       │
-               │ dnsNames:                     │       │
-               │   - nginx1.clcreative.home    │       │
-           ┌───┼─secretName: nginx1-tls-secret │       │
-           │   │                               │       │
-           │   └──────────┬────────────────────┘       │
-           │              │                            │
-           │              │ will be created            │
-           │              ▼ and managed automatically  │
-           │   ┌───────────────────────────────┐       │
-           │   │                               │       │
-           │   │ kind: Secret                  │       │
-           └───┤►name: nginx1-tls-secret◄──────┼───────┘
-               │                               │
-               └───────────────────────────────┘
+5. Create a cluster issuer object `nginx1-clusterissuer.yml`
+```yaml
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: nginx1-clusterissuer
+spec:
+  ca:
+    secretName: nginx1-ca-secret
 ```
+7. Create a new certificate `nginx1-cert.yml` for your projects
+```yaml
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx1-cert
+  namespace: nginx1
+spec:
+  secretName: nginx1-tls-secret
+  issuerRef:
+    name: nginx1-clusterissuer
+    kind: ClusterIssuer
+  dnsNames:
+    - #FQDN of your domain
+```
+9. Add a `tls` reference in your ingress `nginx1-ingress.yml`
+```yaml
+tls:
+  - hosts:
+    - nginx.kube.home  # Your hostname
+    secretName: nginx1-tls-secret # Your TLS Secret
+```
+11. Apply all changes
+
